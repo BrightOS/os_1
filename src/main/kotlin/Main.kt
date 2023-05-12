@@ -21,7 +21,7 @@ fun main() {
     val processList = parseInputFile(
 //        File("test1")
         File("test2")
-    )
+    ) // Считывание данных из файла
 
     val ticks = arrayListOf<String>()
     processList.forEach { process ->
@@ -33,11 +33,13 @@ fun main() {
             repeat(process.numberOfTicks) {
                 ticks.add(process.name)
             }
-    }
+        println(ticks)
+    } // Заполнение списка тиков
+    println()
 
     processList.forEach { process ->
         print(
-            "${process.name} ${process.numberOfTicks} ${process.afterWhatTick} "
+            "${process.name} ${process.numberOfTicks} ${process.priority} ${process.afterWhatTick} "
         )
         ticks.subList(0, ticks.indexOfLast { it.contains(process.name) } + 1).forEach {
             print(it.contains(process.name).let {
@@ -47,7 +49,7 @@ fun main() {
             })
         }
         println()
-    }
+    } // Правильное итоговое отображение тиков для каждого процесса в отдельности
 
 //    println(ticks)
     println("Efficiency: ${"%.${2}f".format((numberOfWaitTicks.toFloat() / numberOfAbstractTicks * 100))}%")
